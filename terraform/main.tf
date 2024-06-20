@@ -113,10 +113,10 @@ resource "aws_launch_template" "backend" {
 resource "aws_autoscaling_group" "backend" {
   name                      = "${var.project_name}-${var.environment}-${var.common_tags.Component}"
   max_size                  = 5  # 5 means max 5 instances run avvali ani 
-  min_size                  = 2   # minimum 1 instance run avvali ani
+  min_size                  = 1   # minimum 1 instance run avvali ani
   health_check_grace_period = 60
   health_check_type         = "ELB"
-  desired_capacity          = 2   # starting 1 instance create kavali ani
+  desired_capacity          = 1   # starting 1 instance create kavali ani
   target_group_arns = [aws_lb_target_group.backend.arn]   # target group ki auto scaling add cheyali
   launch_template {                             # launch template version add chesamu
     id      = aws_launch_template.backend.id
